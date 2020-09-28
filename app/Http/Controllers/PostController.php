@@ -18,7 +18,7 @@ class PostController extends Controller
 
     public function index(): View
     {
-        $posts = Post::orderBy('created_at', 'DESC')->get();
+        $posts = Post::orderBy('created_at', 'DESC')->simplePaginate(10);
         return view('posts.index', compact('posts'));
     }
 

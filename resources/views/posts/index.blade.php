@@ -31,4 +31,6 @@
             </li>
         @endforeach
     </ul>
+
+    {{ $posts->links('posts.partials.pagination') }}
 </x-app-layout>

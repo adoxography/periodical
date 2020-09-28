@@ -42,4 +42,60 @@ class ViewPostsTest extends TestCase
         $response->assertOk();
         $response->assertSeeInOrder(['Post 1', 'Post 2']);
     }
+
+    /** @test */
+    public function at_most_10_posts_are_shown_per_page()
+    {
+        Post::factory()->count(11)->create();
+
+        $response = $this->get('/posts');
+
+        $response->assertOk();
+        $response->assertViewHas('posts');
+        $this->assertCount(10, $response['posts']);
+    }
+
+    /** @test */
+    public function a_next_page_button_appears_if_there_are_more_pages()
+    {
+        Post::factory()->count(11)->create();
+
+        $response = $this->get('/posts');
+
+        $response->assertOk();
+        $response->assertSee('Next page');
+    }
+
+    /** @test */
+    public function a_previous_page_button_appears_if_there_are_previous_pages()
+    {
+        Post::factory()->count(11)->create();
+
+        $response = $this->get('/posts?page=2');
+
+        $response->assertOk();
+        $response->assertSee('Previous page');
+    }
+
+    /** @test */
+    public function a_next_page_button_does_not_appear_if_there_are_no_more_pages()
+    {
+        Post::factory()->count(1)->create();
+
+        $response = $this->get('/posts');
+
+        $response->assertOk();
+        $response->assertDontSee('Next page');
+    }
+
+    /** @test */
+    public function a_previous_page_button_does_not_appear_if_there_are_no_previous_pages()
+    {
+        Post::factory()->count(1)->create();
+
+        $response = $this->get('/posts');
+
+        $response->assertOk();
+        $response->assertDontSee('Previous page');
+    }
 }

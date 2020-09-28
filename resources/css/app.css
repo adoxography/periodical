@@ -33,7 +33,7 @@ html {
 
 body {
   font-family: var(--ff-body);
-  background-color: var(--gray-400);
+  background-color: var(--gray-200);
 }
 
 a {
@@ -63,7 +63,7 @@ button {
 .btn {
   padding: 0.5em 2em;
   border: none;
-  background-color: var(--gray-500);
+  background-color: var(--gray-400);
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 1.125rem;
@@ -219,6 +219,7 @@ button {
 .post-feed {
   width: 1024px;
   margin: 0 auto;
+  padding: 0;
   list-style-type: none;
 }
 
@@ -655,7 +656,7 @@ button {
 }
 
 .comment-form__body[disabled] {
-  background-color: var(--gray-500);
+  background-color: var(--gray-300);
 }
 
 .comment-form__body::placeholder {
@@ -677,7 +678,7 @@ button {
 }
 
 .comment {
-  background-color: var(--gray-200);
+  background-color: var(--gray-100);
   border-radius: 0.5rem;
   padding: 1em 1.5em;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -714,4 +715,63 @@ button {
 
 .comment__body {
   white-space: pre;
+}
+
+/*
+|======================================
+| Post pagination
+|======================================
+|
+|
+*/
+
+.post-pagination {
+  display: flex;
+  justify-content: space-between;
+  width: 1024px;
+  margin: 0 auto;
+}
+
+.post-pagination__link {
+  display: flex;
+  align-items: center;
+  margin: 1em 0;
+  height: 1.5em;
+  color: var(--gray-700);
+  font-weight: 500;
+  background-color: var(--gray-100);
+  padding: 1em;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.post-pagination__icon {
+  fill: currentColor;
+  width: 1.5em;
+}
+
+.post-pagination__icon--left {
+  margin-right: 0.25em;
+}
+
+.post-pagination__icon--right {
+  margin-left: 0.25em;
+}
+
+.post-pagination__link--right:hover .post-pagination__icon {
+  animation: 0.5s linear infinite alternate slide-right;
+}
+
+.post-pagination__link--left:hover .post-pagination__icon {
+  animation: 0.5s linear infinite alternate slide-left;
+}
+
+@keyframes slide-right {
+  from { transform: translateX(0); }
+  to { transform: translateX(0.5em); }
+}
+
+@keyframes slide-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-0.5em); }
 }
