@@ -3,7 +3,7 @@
 
     <div class="nav__center">
         <a class="nav__title" href="/">
-            {{ config('app.name') }}.
+            {{ settings('blog name', 'Periodical') }}.
         </a>
     </div>
 
