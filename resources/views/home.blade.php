@@ -3,15 +3,15 @@
         <header class="about__header">
             <img
                 class="about__avatar"
-                src="{{ $admin->avatar }}"
-                alt="{{ $admin->name }}"
+                src="{{ $admin->avatar ?? 'https://placekitten.com/300' }}"
+                alt="{{ $admin->name ?? 'Jane Doe' }}"
             />
-            <h2 class="about__title">Hi, I'm {{ $admin->name }}</h2>
+            <h2 class="about__title">Hi, I'm {{ $admin->name ?? 'Jane Doe' }}</h2>
             <p class="about__subtitle">Welcome to my blog!</p>
         </header>
 
         <p class="about__body">
-            {{ $admin->bio }}
+            {{ $admin->bio ?? 'Welcome to your new blog! You can change this text into a proper intro by editing your user settings.' }}
         </p>
     </section>
 
