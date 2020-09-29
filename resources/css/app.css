@@ -415,7 +415,7 @@ button {
 
 .post-navigation {
   width: 1024px;
-  margin: 0 auto;
+  margin: 1em auto 0;
   display: flex;
   justify-content: space-between;
 }
