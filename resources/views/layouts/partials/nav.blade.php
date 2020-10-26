@@ -2,8 +2,10 @@
     <div class="nav__left"></div>
 
     <div class="nav__center">
-        <a class="nav__title" href="/">
-            {{ settings('blog name', 'Periodical') }}.
+        <a href="/">
+            <h1 class="nav__title">
+                {{ settings('blog name', 'Periodical') }}.
+            </h1>
         </a>
     </div>
 

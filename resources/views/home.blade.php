@@ -23,7 +23,7 @@
         <x-post-feed :posts="$posts" />
 
         <div class="center-content-x">
-            <a class="post-feed-section__cta btn" href="/posts">
+            <a class="post-feed-section__cta btn btn--dark" href="/posts">
                 See all posts
             </a>
         </div>

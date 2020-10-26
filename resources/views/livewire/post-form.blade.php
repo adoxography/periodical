@@ -36,6 +36,9 @@
         wire:ignore
         x-data
         x-init="new MediumEditor($refs.mediumEditor, {
+            placeholder: {
+                text: 'Write something inspiring!'
+            },
             extensions: {
                 markdown: new MeMarkdown(md => $wire.set('post.body', md))
             }
