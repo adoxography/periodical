@@ -27,7 +27,7 @@
                 <div class="byline">
                     <img
                         class="byline__avatar"
-                        src={{ $post->author->avatar }}
+                        src={{ $post->author->avatar_url }}
                         alt="{{ $post->author->name }}"
                     />
 

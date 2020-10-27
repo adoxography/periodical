@@ -37,7 +37,7 @@
                 <li class="nav__link-item">
                     <a class="nav__link" href="/me">
                         My account
-                        <img class="avatar" src="{{ Auth::user()->avatar }}" />
+                        <img class="avatar" src="{{ Auth::user()->avatar_url }}" />
                     </a>
                 </li>
             @endauth

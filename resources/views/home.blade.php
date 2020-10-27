@@ -3,7 +3,7 @@
         <header class="about__header">
             <img
                 class="about__avatar"
-                src="{{ $admin->avatar ?? 'https://placekitten.com/300' }}"
+                src="{{ $admin->avatar_url ?? 'https://placekitten.com/300' }}"
                 alt="{{ $admin->name ?? 'Jane Doe' }}"
             />
             <h2 class="about__title">Hi, I'm {{ $admin->name ?? 'Jane Doe' }}</h2>

@@ -58,6 +58,19 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function getAvatarUrlAttribute(): string
+    {
+        if (!$this->avatar) {
+            return '';
+        }
+
+        if (preg_match('`^https?://`', $this->avatar)) {
+            return $this->avatar;
+        }
+
+        return "/images/{$this->avatar}";
+    }
+
     public function posts(): Relation
     {
         return $this->hasMany(Post::class, 'author_id');

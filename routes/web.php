@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,5 @@ Route::post('/posts', [PostController::class, 'save']);
 Route::get('/social/auth/{provider}', [AuthController::class, 'redirect']);
 Route::get('/social/auth/{provider}/callback', [AuthController::class, 'callback']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/me', [UserController::class, 'edit']);
