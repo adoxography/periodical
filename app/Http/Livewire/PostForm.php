@@ -36,15 +36,15 @@ class PostForm extends Component
             $postData['image'] = $validatedData['image']->store('/', $disk = 'images');
         }
 
-        $post = auth()->user()->posts()->save($validatedData['post']);
-
-        if ($post->wasRecentlyCreated) {
-            session()->flash('status', 'Post created successfully');
-        } else {
+        if ($this->post->exists()) {
+            $this->post->update($validatedData['post']);
             session()->flash('status', 'Post edited successfully');
+        } else {
+            $this->post = auth()->user()->posts()->save(new Post($validatedData['post']));
+            session()->flash('status', 'Post created successfully');
         }
 
-        return redirect("/posts/{$post->slug}");
+        return redirect("/posts/{$this->post->slug}");
     }
 
     public function render(): View

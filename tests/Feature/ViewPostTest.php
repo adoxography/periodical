@@ -14,6 +14,7 @@ class ViewPostTest extends TestCase
     /** @test */
     public function a_post_can_be_viewed()
     {
+        $this->withoutExceptionHandling();
         $created_time = now();
 
         $post = Post::factory()->create([
