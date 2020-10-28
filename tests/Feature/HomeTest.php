@@ -48,11 +48,10 @@ class HomeTest extends TestCase
     }
 
     /** @test */
-    public function it_shows_the_administrator_bio()
+    public function it_shows_the_site_description()
     {
-        $user = User::factory()->withPermissionTo('show bio on homepage')->create([
-            'bio' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam'
-        ]);
+        $this->withFakeSettings();
+        settings()->put('description', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam');
 
         $response = $this->get('/');
 

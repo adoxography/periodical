@@ -11,7 +11,7 @@
         </header>
 
         <p class="about__body">
-            {{ $admin->bio ?? 'Welcome to your new blog! You can change this text into a proper intro by editing your user settings.' }}
+            {{ settings('description', 'Welcome to your new blog! You can change this text into a proper intro by editing your user settings.') }}
         </p>
     </section>
 

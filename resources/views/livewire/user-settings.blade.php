@@ -53,8 +53,13 @@
     </div>
 
     <div class="field field--center">
-        <button wire:click="save" class="field__submit-btn btn" wire:loading.class="la-ball-clip-rotate">
-            <span wire:loading.remove>
+        <button
+            wire:click="save"
+            class="field__submit-btn btn"
+            wire:loading.class="la-ball-clip-rotate"
+            wire:target="save"
+        >
+            <span wire:loading.remove wire:target="save">
                 Save
             </span>
         </button>

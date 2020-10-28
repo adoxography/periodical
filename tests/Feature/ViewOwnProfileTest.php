@@ -32,4 +32,30 @@ class ViewOwnProfileTest extends TestCase
 
         $response->assertRedirect('/');
     }
+
+    /** @test */
+    public function it_shows_site_settings_if_the_user_is_an_administrator()
+    {
+        $this->withPermissions();
+
+        $user = User::factory()->create()->givePermissionTo('alter site settings');
+
+        $response = $this->actingAs($user)->get('/me');
+
+        $response->assertSee('Site settings');
+        $response->assertSeeLivewire('site-settings');
+    }
+
+    /** @test */
+    public function it_does_not_show_site_settings_if_the_user_does_not_have_permission()
+    {
+        $this->withPermissions();
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/me');
+
+        $response->assertDontSee('Site settings');
+        $response->assertDontSeeLivewire('site-settings');
+    }
 }

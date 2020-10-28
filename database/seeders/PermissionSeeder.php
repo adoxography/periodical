@@ -21,11 +21,15 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'create posts']);
 
         Permission::create(['name' => 'show bio on homepage']);
+        Permission::create(['name' => 'alter site settings']);
 
         Role::create(['name' => 'contributor'])
             ->givePermissionTo('create posts');
 
         Role::create(['name' => 'administrator'])
-            ->givePermissionTo('show bio on homepage');
+            ->givePermissionTo([
+                'show bio on homepage',
+                'alter site settings'
+            ]);
     }
 }
