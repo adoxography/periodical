@@ -4,7 +4,7 @@
     <div class="nav__center">
         <a href="/">
             <h1 class="nav__title">
-                {{ settings('title', 'Periodical.') }}
+                {{ settings()->title }}
             </h1>
         </a>
     </div>

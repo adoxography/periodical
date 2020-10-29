@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use App\Settings;
+use App\SiteSettings;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Spatie\Permission\PermissionRegistrar;
 
@@ -16,10 +16,11 @@ abstract class TestCase extends BaseTestCase
         $this->artisan('db:seed --class=PermissionSeeder');
     }
 
-    public function withFakeSettings(): void
+    public function withFakeSettings(array $settings = []): void
     {
-        $settings = Settings::make(storage_path('app/test_settings.json'));
-        $settings->flush();
-        $this->app->instance(Settings::class, $settings);
+        SiteSettings::fake(array_merge([
+            'title' => 'Fake title',
+            'description' => 'Fake description'
+        ], $settings));
     }
 }

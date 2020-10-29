@@ -10,17 +10,12 @@ use Tests\TestCase;
 
 class SiteSettingsTest extends TestCase
 {
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        $this->withFakeSettings();
-    }
+    use RefreshDatabase;
 
     /** @test */
     public function it_shows_the_site_title()
     {
-        settings()->put('title', 'Fooius Barius');
+        $this->withFakeSettings(['title' => 'Fooius Barius']);
 
         $component = Livewire::test(SiteSettings::class);
 
@@ -35,13 +30,13 @@ class SiteSettingsTest extends TestCase
         $component->set('title', 'My Awesome Site');
         $component->call('save');
 
-        $this->assertEquals('My Awesome Site', settings('title'));
+        $this->assertEquals('My Awesome Site', settings()->title);
     }
 
     /** @test */
     public function it_shows_the_site_description()
     {
-        settings()->put('description', 'Lorem ipsum dolor sit amet');
+        $this->withFakeSettings(['description' => 'Lorem ipsum dolor sit amet']);
 
         $component = Livewire::test(SiteSettings::class);
 
@@ -56,6 +51,6 @@ class SiteSettingsTest extends TestCase
         $component->set('description', 'Read all about it');
         $component->call('save');
 
-        $this->assertEquals('Read all about it', settings('description'));
+        $this->assertEquals('Read all about it', settings()->description);
     }
 }

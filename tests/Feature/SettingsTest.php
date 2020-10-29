@@ -2,39 +2,34 @@
 
 namespace Tests\Feature;
 
-use App\Settings;
+use App\SiteSettings;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class SettingsTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->withFakeSettings();
+        $this->withFakeSettings([
+            'title' => 'Fake title',
+            'description' => 'Fake description'
+        ]);
     }
 
     /** @test */
-    public function it_retrieves_the_settings_object()
+    public function it_has_a_title()
     {
-        $this->assertInstanceOf(Settings::class, settings());
+        $this->assertEquals('Fake title', settings()->title);
     }
 
     /** @test */
-    public function it_retrieves_values()
+    public function it_has_a_description()
     {
-        settings()->put('foo', 'bar');
-
-        $this->assertEquals('bar', settings('foo'));
-    }
-
-    /** @test */
-    public function it_can_provide_a_default_value()
-    {
-        $this->assertNull(settings('foo'));
-
-        $this->assertEquals('bar', settings('foo', 'bar'));
+        $this->assertEquals('Fake description', settings()->description);
     }
 }

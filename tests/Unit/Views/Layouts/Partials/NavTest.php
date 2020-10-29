@@ -14,24 +14,13 @@ class NavTest extends TestCase
     {
         parent::setUp();
 
-        $this->withFakeSettings();
         $this->withPermissions();
-    }
-
-    /** @test */
-    public function it_shows_the_default_name_of_the_blog_if_the_blog_name_has_not_been_set()
-    {
-        $this->assertNull(settings('title'));
-
-        $view = $this->view('layouts.partials.nav');
-
-        $view->assertSee('Periodical');
     }
 
     /** @test */
     public function it_uses_the_blog_name_from_the_settings_object_if_available()
     {
-        settings()->put('title', 'Foo Blog');
+        $this->withFakeSettings(['title' => 'Foo Blog']);
 
         $view = $this->view('layouts.partials.nav');
 

@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.0",
         "livewire/livewire": "^2.0",
         "spatie/laravel-permission": "^3.17",
+        "spatie/laravel-settings": "^0.0.2",
         "spatie/laravel-sluggable": "^2.5",
         "spatie/valuestore": "^1.2"
     },

@@ -1,17 +1,11 @@
 <?php
 
-use App\Settings;
+use App\SiteSettings;
 
 if (!function_exists('settings')) {
-    /**
-     * @param mixed $default
-     */
-    function settings(?string $key = null, $default = null)
-    {
-        if ($key === null) {
-            return app(Settings::class);
-        }
 
-        return app(Settings::class)->get($key, $default);
+    function settings(): SiteSettings
+    {
+        return app(SiteSettings::class);
     }
 }

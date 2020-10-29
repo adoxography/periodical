@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\SiteSettings as Settings;
 use Livewire\Component;
 
 class SiteSettings extends Component
@@ -9,16 +10,17 @@ class SiteSettings extends Component
     public string $title;
     public string $description;
 
-    public function mount(): void
+    public function mount(Settings $settings): void
     {
-        $this->title = settings('title', '');
-        $this->description = settings('description', '');
+        $this->title = $settings->title;
+        $this->description = $settings->description;
     }
 
-    public function save(): void
+    public function save(Settings $settings): void
     {
-        settings()->put('title', $this->title);
-        settings()->put('description', $this->description);
+        $settings->title = $this->title;
+        $settings->description = $this->description;
+        $settings->save();
     }
 
     public function render()
