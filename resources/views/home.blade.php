@@ -1,11 +1,13 @@
 <x-app-layout>
     <section class="about">
         <header class="about__header">
-            <img
-                class="about__avatar"
-                src="{{ $admin->avatar_url ?? 'https://placekitten.com/300' }}"
-                alt="{{ $admin->name ?? 'Jane Doe' }}"
-            />
+            <a href="{{ $admin->url }}" class="contents">
+                <img
+                    class="about__avatar"
+                    src="{{ $admin->avatar_url ?? 'https://placekitten.com/300' }}"
+                    alt="{{ $admin->name ?? 'Jane Doe' }}"
+                />
+            </a>
             <h2 class="about__title">Hi, I'm {{ $admin->name ?? 'Jane Doe' }}</h2>
             <p class="about__subtitle">Welcome to my blog!</p>
         </header>

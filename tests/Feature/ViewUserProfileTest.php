@@ -11,10 +11,27 @@ class ViewUserProfileTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->withPermissions();
+    }
+
+    /** @test */
+    public function users_without_permission_do_not_have_a_bio()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->get($user->url);
+
+        $response->assertStatus(404);
+    }
+
     /** @test */
     public function it_returns_the_correct_view()
     {
-        $user = User::factory()->create();
+        $user = User::factory()->create()->givePermissionTo('have bio');
 
         $response = $this->get($user->url);
 
@@ -26,7 +43,7 @@ class ViewUserProfileTest extends TestCase
     /** @test */
     public function it_shows_the_user_name()
     {
-        $user = User::factory()->create(['name' => 'Test User']);
+        $user = User::factory()->create(['name' => 'Test User'])->givePermissionTo('have bio');
 
         $response = $this->get($user->url);
 
@@ -37,7 +54,7 @@ class ViewUserProfileTest extends TestCase
     /** @test */
     public function it_shows_the_user_avatar()
     {
-        $user = User::factory()->create(['avatar' => 'https://placekitten.com/500']);
+        $user = User::factory()->create(['avatar' => 'https://placekitten.com/500'])->givePermissionTo('have bio');
 
         $response = $this->get($user->url);
 
@@ -48,7 +65,7 @@ class ViewUserProfileTest extends TestCase
     /** @test */
     public function it_shows_the_user_bio()
     {
-        $user = User::factory()->create(['bio' => 'lorem ipsum dolor sit amet']);
+        $user = User::factory()->create(['bio' => 'lorem ipsum dolor sit amet'])->givePermissionTo('have bio');
 
         $response = $this->get($user->url);
 
@@ -59,7 +76,7 @@ class ViewUserProfileTest extends TestCase
     /** @test */
     public function it_shows_the_most_recent_four_posts()
     {
-        $user = User::factory()->create();
+        $user = User::factory()->create()->givePermissionTo('have bio');
 
         $userPost1 = Post::factory()->create([
             'author_id' => $user,

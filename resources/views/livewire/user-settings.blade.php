@@ -29,17 +29,19 @@
         />
     </div>
 
-    <div class="field">
-        <label for="bio" class="field__label">
-            Bio
-        </label>
+    @if ($user->can('have bio'))
+        <div class="field">
+            <label for="bio" class="field__label">
+                Bio
+            </label>
 
-        <textarea
-            id="bio"
-            class="field__input field__input--textarea"
-            wire:model="user.bio"
-        ></textarea>
-    </div>
+            <textarea
+                id="bio"
+                class="field__input field__input--textarea"
+                wire:model="user.bio"
+            ></textarea>
+        </div>
+    @endif
 
     <div class="field field--image previewed-upload">
         <label class="btn previewed-upload__input">

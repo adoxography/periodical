@@ -25,11 +25,13 @@
                 <h1 class="blog-post__title">{{ $post->title }}</h1>
 
                 <div class="byline">
-                    <img
-                        class="byline__avatar"
-                        src={{ $post->author->avatar_url }}
-                        alt="{{ $post->author->name }}"
-                    />
+                    <a href="{{ $post->author->url }}" class="contents">
+                        <img
+                            class="byline__avatar"
+                            src={{ $post->author->avatar_url }}
+                            alt="{{ $post->author->name }}"
+                        />
+                    </a>
 
                     <address class="byline__author">
                         <a rel="author" href="{{ $post->author->url }}">{{ $post->author->name }}</a>

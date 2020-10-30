@@ -98,19 +98,31 @@ class UserSettingsTest extends TestCase
     }
 
     /** @test */
-    public function it_shows_the_user_bio()
+    public function it_shows_the_bio_field_if_the_user_has_permission()
     {
-        $user = User::factory()->create(['bio' => 'lorem ipsum dolor sit amet']);
+        $this->withPermissions();
+        $user = User::factory()->create()->givePermissionTo('have bio');
 
         $component = Livewire::test(UserSettings::class, compact('user'));
 
-        $component->assertSee('lorem ipsum dolor sit amet');
+        $component->assertSee('Bio');
+    }
+
+    /** @test */
+    public function it_does_not_show_the_bio_field_if_the_user_does_not_have_permission()
+    {
+        $this->withPermissions();
+        $user = User::factory()->create();
+
+        $component = Livewire::test(UserSettings::class, compact('user'));
+
+        $component->assertDontSee('Bio');
     }
 
     /** @test */
     public function it_updates_the_user_bio()
     {
-        $user = User::factory()->create(['bio' => 'lorem dolor sit amet']);
+        $user = User::factory()->create(['bio' => '']);
         $component = Livewire::test(UserSettings::class, compact('user'));
 
         $component->set('user.bio', 'this is my new bio');

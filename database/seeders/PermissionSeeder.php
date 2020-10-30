@@ -19,12 +19,16 @@ class PermissionSeeder extends Seeder
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         Permission::create(['name' => 'create posts']);
+        Permission::create(['name' => 'have bio']);
 
         Permission::create(['name' => 'show bio on homepage']);
         Permission::create(['name' => 'alter site settings']);
 
         Role::create(['name' => 'contributor'])
-            ->givePermissionTo('create posts');
+            ->givePermissionTo([
+                'create posts',
+                'have bio'
+            ]);
 
         Role::create(['name' => 'administrator'])
             ->givePermissionTo([

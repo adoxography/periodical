@@ -15,6 +15,10 @@ class UserController extends Controller
 
     public function show(User $user): View
     {
+        if (!$user->can('have bio')) {
+            abort(404);
+        }
+
         return view('users.show', compact('user'));
     }
 
