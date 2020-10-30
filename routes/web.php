@@ -30,3 +30,4 @@ Route::get('/social/auth/{provider}/callback', [AuthController::class, 'callback
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/me', [UserController::class, 'edit']);
+Route::get('/users/{user:slug}', [UserController::class, 'show']);

@@ -38,9 +38,7 @@
             id="bio"
             class="field__input field__input--textarea"
             wire:model="user.bio"
-        >
-            {{ $user->bio }}
-        </textarea>
+        ></textarea>
     </div>
 
     <div class="field field--image previewed-upload">

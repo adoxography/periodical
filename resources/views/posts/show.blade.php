@@ -32,7 +32,7 @@
                     />
 
                     <address class="byline__author">
-                        <a rel="author" href="#">{{ $post->author->name }}</a>
+                        <a rel="author" href="{{ $post->author->url }}">{{ $post->author->name }}</a>
                     </address>
 
                     <time class="byline__pubdate" pubdate="pubdate" datetime="{{ $post->created_at }}">

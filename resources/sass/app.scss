@@ -275,11 +275,11 @@ ul {
       grid-row-gap: 0.5rem;
       margin-top: 1em;
       margin-bottom: 1em;
+      width: fit-content;
     }
 
     @media (min-width: $break-large) {
-      margin-bottom: 1em;
-      margin-left: 25rem;
+      margin: 1em auto;
     }
   }
 
@@ -1006,7 +1006,7 @@ ul {
   }
 }
 
-.settings {
+.box {
   background-color: white;
   padding: 1rem;
   margin: 1rem 1rem 0;
@@ -1022,7 +1022,9 @@ ul {
     width: 90ch;
     padding: 1rem 2rem;
   }
+}
 
+.settings {
   &__title {
     text-align: center;
     font-weight: 500;
@@ -1070,4 +1072,46 @@ ul {
 .turbolinks-progress-bar {
   height: 5px;
   background-color: $gray-500;
+}
+
+.user-profile {
+  margin-bottom: 4rem;
+
+  &__header {
+    margin-top: 0.75rem;
+
+    @media (min-width: $break-large) {
+      display: grid;
+      grid-template-areas: "avatar name";
+      grid-template-columns: max-content;
+      grid-column-gap: 2rem;
+    }
+  }
+
+  &__avatar {
+    grid-area: avatar;
+    width: 12rem;
+    height: 12rem;
+    object-fit: cover;
+    border-radius: 1rem;
+    margin: auto;
+  }
+
+  &__name {
+    grid-area: name;
+    align-self: center;
+    font-weight: 400;
+    text-align: center;
+
+    @media (min-width: $break-large) {
+      font-size: 2.5rem;
+      text-align: left;
+    }
+  }
+
+  &__bio {
+    font-size: 1.125rem;
+    line-height: 1.5;
+    margin-top: 2rem;
+  }
 }

@@ -22,7 +22,7 @@
             </div>
         @endcan
 
-        <div class="tabs__content settings" x-show="tab === 'account'">
+        <div class="tabs__content settings box" x-show="tab === 'account'">
             <h2 class="settings__title">
                 Account settings
             </h2>
@@ -31,7 +31,7 @@
         </div>
 
         @can ('alter site settings')
-            <div class="tabs__content settings" x-show="tab === 'site'">
+            <div class="tabs__content settings box" x-show="tab === 'site'">
                 <h2 class="settings__title">
                     Site settings
                 </h2>

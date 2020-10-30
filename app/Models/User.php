@@ -7,26 +7,17 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class User extends Authenticatable
 {
     use HasFactory;
     use HasRoles;
+    use HasSlug;
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'provider',
-        'provider_id',
-        'avatar'
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -49,6 +40,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getUrlAttribute(): string
+    {
+        return "/users/{$this->slug}";
+    }
+
     public function getAvatarUrlAttribute(): string
     {
         if (!$this->avatar) {
@@ -70,5 +66,12 @@ class User extends Authenticatable
     public function accounts(): Relation
     {
         return $this->hasMany(SocialAccount::class);
+    }
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
     }
 }

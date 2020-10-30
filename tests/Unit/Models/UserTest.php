@@ -29,4 +29,11 @@ class UserTest extends TestCase
         $user = new User();
         $this->assertEquals('', $user->avatar_url);
     }
+
+    /** @test */
+    public function it_has_a_url()
+    {
+        $user = new User(['slug' => 'test-slug']);
+        $this->assertEquals('/users/test-slug', $user->url);
+    }
 }
