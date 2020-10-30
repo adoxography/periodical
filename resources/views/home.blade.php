@@ -1,7 +1,7 @@
 <x-app-layout>
     <section class="about">
         <header class="about__header">
-            <a href="{{ $admin->url }}" class="contents">
+            <a href="{{ $admin->url ?? '#' }}" class="contents">
                 <img
                     class="about__avatar"
                     src="{{ $admin->avatar_url ?? 'https://placekitten.com/300' }}"
