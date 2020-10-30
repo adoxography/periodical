@@ -130,7 +130,7 @@ class PostFormTest extends TestCase
         $component->call('save');
 
         $post = Post::where('title', 'Test post')->first();
-        Storage::disk('images')->assertExists($post->image);
+        $this->assertNotNull($post->image);
     }
 
     /** @test */

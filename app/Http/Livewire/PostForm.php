@@ -37,10 +37,10 @@ class PostForm extends Component
         }
 
         if ($this->post->exists()) {
-            $this->post->update($validatedData['post']);
+            $this->post->update($postData);
             session()->flash('status', 'Post edited successfully');
         } else {
-            $this->post = auth()->user()->posts()->save(new Post($validatedData['post']));
+            $this->post = auth()->user()->posts()->save(new Post($postData));
             session()->flash('status', 'Post created successfully');
         }
 
