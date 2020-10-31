@@ -31,6 +31,7 @@ class ViewUserProfileTest extends TestCase
     /** @test */
     public function it_returns_the_correct_view()
     {
+        $this->withoutExceptionHandling();
         $user = User::factory()->create()->givePermissionTo('have bio');
 
         $response = $this->get($user->url);
