@@ -43,6 +43,14 @@
                 @endforeach
             @endif
 
+            @if (session()->has('status'))
+                <div class="flash">
+                    <p class="flash__message">
+                        {{ session('status') }}
+                    </p>
+                </div>
+            @endif
+
             <!-- Page Content -->
             <main id="main-content">
                 {{ $slot }}

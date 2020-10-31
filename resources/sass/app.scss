@@ -1122,3 +1122,15 @@ ul {
     margin-top: 2rem;
   }
 }
+
+.flash {
+  display: flex;
+  justify-content: center;
+
+  &__message {
+    display: block;
+    border-radius: 0.5rem;
+    background-color: $gray-400;
+    padding: 0.5em 1em;
+  }
+}

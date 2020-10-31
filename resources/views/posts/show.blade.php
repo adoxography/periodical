@@ -1,10 +1,4 @@
 <x-app-layout>
-    @if (session()->has('status'))
-        <div class="flash">
-            {{ session('status') }}
-        </div>
-    @endif
-
     <article class="blog-post">
         <header class="blog-post__header">
             <img
