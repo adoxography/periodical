@@ -3,18 +3,24 @@
 namespace App\Models\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 trait HasChronology
 {
-    private ?self $chronological_next;
-    private ?self $chronological_previous;
+    /** @var ?Model */
+    private $chronological_next;
 
-    public function getNextAttribute(): ?self
+    /** @var ?Model */
+    private $chronological_previous;
+
+    /** @return ?Model */
+    public function getNextAttribute()
     {
         return ($this->chronological_next ??= $this->moreRecent()->first());
     }
 
-    public function getPreviousAttribute(): ?self
+    /** @return ?Model */
+    public function getPreviousAttribute()
     {
         return ($this->chronological_previous ??= $this->earlier()->first());
     }

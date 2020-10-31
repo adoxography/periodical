@@ -2,28 +2,20 @@
 
 namespace App\View\Components;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
 class PostFeed extends Component
 {
-    public $posts;
+    public Paginator $posts;
 
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct($posts)
+    public function __construct(Paginator $posts)
     {
         $this->posts = $posts;
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\View\View|string
-     */
-    public function render()
+    public function render(): View
     {
         return view('components.post-feed');
     }

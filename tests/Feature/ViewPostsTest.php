@@ -14,6 +14,7 @@ class ViewPostsTest extends TestCase
     /** @test */
     public function posts_can_be_viewed()
     {
+        $this->withoutExceptionHandling();
         Post::factory()->create(['title' => 'Post 1']);
         Post::factory()->create(['title' => 'Post 2']);
 

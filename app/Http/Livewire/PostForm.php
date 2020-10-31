@@ -3,9 +3,11 @@
 namespace App\Http\Livewire;
 
 use App\Models\Post;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Livewire\Component;
-use Livewire\Redirector;
 use Livewire\WithFileUploads;
 
 class PostForm extends Component
@@ -13,6 +15,8 @@ class PostForm extends Component
     use WithFileUploads;
 
     public Post $post;
+
+    /** @var UploadedFile */
     public $image;
 
     public function mount(Post $post = null): void
@@ -26,7 +30,10 @@ class PostForm extends Component
         'image' => 'nullable|image'
     ];
 
-    public function save(): Redirector
+    /**
+     * @return RedirectResponse
+     */
+    public function save()
     {
         $validatedData = $this->validate();
 
@@ -40,7 +47,7 @@ class PostForm extends Component
             $this->post->update($postData);
             session()->flash('status', 'Post edited successfully');
         } else {
-            $this->post = auth()->user()->posts()->save(new Post($postData));
+            $this->post = Post::create(array_merge($postData, ['author_id' => Auth::id()]));
             session()->flash('status', 'Post created successfully');
         }
 

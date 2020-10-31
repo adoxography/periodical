@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\View\View;
 use App\SiteSettings as Settings;
 use Livewire\Component;
 
@@ -24,7 +25,7 @@ class SiteSettings extends Component
         $this->dispatchBrowserEvent('site-settings-updated');
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.site-settings');
     }
