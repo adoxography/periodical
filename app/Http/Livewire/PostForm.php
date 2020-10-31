@@ -36,7 +36,7 @@ class PostForm extends Component
             $postData['image'] = $validatedData['image']->store('/', $disk = 'images');
         }
 
-        if ($this->post->exists()) {
+        if ($this->post->id) {
             $this->post->update($postData);
             session()->flash('status', 'Post edited successfully');
         } else {
