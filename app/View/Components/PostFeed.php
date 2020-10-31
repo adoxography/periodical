@@ -12,7 +12,7 @@ class PostFeed extends Component
     /** @var Collection|Paginator */
     public $posts;
 
-    /** @var Collection|Paginator $posts */
+    /** @param Collection|Paginator $posts */
     public function __construct($posts)
     {
         $this->posts = $posts;
