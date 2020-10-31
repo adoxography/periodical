@@ -27,8 +27,15 @@
         <button
             wire:click="save"
             class="field__submit-btn btn"
-            wire:loading.class="la-ball-clip-rotate"
+            wire:loading.class="btn--loading"
             wire:target="save"
+
+            x-data="{ recentlySaved: false }"
+            :class="{ 'btn--success': recentlySaved }"
+            @site-settings-updated.window="
+                recentlySaved = true;
+                setTimeout(() => { recentlySaved = false; }, 800);
+            "
         >
             <span wire:loading.remove wire:target="save">
                 Save

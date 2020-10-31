@@ -96,6 +96,7 @@ ul {
  */
 
 .btn {
+  cursor: pointer;
   display: inline-block;
   border: none;
   text-transform: uppercase;
@@ -106,7 +107,9 @@ ul {
   padding: 0.5em 1em;
   width: fit-content;
   height: fit-content;
-  transition: transform 200ms ease-in-out;
+  transition:
+    transform 200ms ease-in-out,
+    background-color 400ms ease-in-out;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 
   &--dark {
@@ -116,6 +119,32 @@ ul {
 
   &:hover {
     transform: scale(1.1);
+  }
+
+  &--loading {
+    /*!
+     * Load Awesome v1.1.0 (http://github.danielcardoso.net/load-awesome/)
+     * Copyright 2015 Daniel Cardoso <@DanielCardoso>
+     * Licensed under MIT
+     */
+    &::after {
+      content: "";
+      width: 1em;
+      height: 1em;
+      display: inline-block;
+      border: 0 solid currentColor;
+      background-color: transparent;
+      border-width: 0.15em;
+      border-bottom-color: transparent;
+      border-radius: 100%;
+      animation: ball-clip-rotate 0.75s linear infinite;
+    }
+  }
+
+  &--success {
+    background-color: $green-400;
+    cursor: default;
+    transition: background-color 100ms linear;
   }
 }
 
@@ -980,24 +1009,6 @@ ul {
     grid-area: preview;
     object-fit: cover;
   }
-}
-
-/*!
- * Load Awesome v1.1.0 (http://github.danielcardoso.net/load-awesome/)
- * Copyright 2015 Daniel Cardoso <@DanielCardoso>
- * Licensed under MIT
- */
-.la-ball-clip-rotate::after {
-  content: "";
-  width: 1em;
-  height: 1em;
-  display: inline-block;
-  border: 0 solid currentColor;
-  background-color: transparent;
-  border-width: 0.15em;
-  border-bottom-color: transparent;
-  border-radius: 100%;
-  animation: ball-clip-rotate 0.75s linear infinite;
 }
 
 /*

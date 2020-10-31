@@ -30,6 +30,8 @@ class UserSettings extends Component
         }
 
         $this->user->save();
+
+        $this->dispatchBrowserEvent('user-settings-updated');
     }
 
     public function render()

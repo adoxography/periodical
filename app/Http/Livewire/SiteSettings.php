@@ -21,6 +21,7 @@ class SiteSettings extends Component
         $settings->title = $this->title;
         $settings->description = $this->description;
         $settings->save();
+        $this->dispatchBrowserEvent('site-settings-updated');
     }
 
     public function render()

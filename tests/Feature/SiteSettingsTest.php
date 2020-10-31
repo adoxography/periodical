@@ -53,4 +53,14 @@ class SiteSettingsTest extends TestCase
 
         $this->assertEquals('Read all about it', settings()->description);
     }
+
+    /** @test */
+    public function it_flashes_a_message_when_the_settings_are_updated()
+    {
+        $component = Livewire::test(SiteSettings::class);
+
+        $component->call('save');
+
+        $component->assertDispatchedBrowserEvent('site-settings-updated');
+    }
 }

@@ -155,4 +155,15 @@ class UserSettingsTest extends TestCase
 
         $this->assertNotNull($user->fresh()->avatar);
     }
+
+    /** @test */
+    public function it_flashes_a_message_when_the_settings_are_updated()
+    {
+        $user = User::factory()->create();
+        $component = Livewire::test(UserSettings::class, compact('user'));
+
+        $component->call('save');
+
+        $component->assertDispatchedBrowserEvent('user-settings-updated');
+    }
 }
