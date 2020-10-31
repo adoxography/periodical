@@ -14,7 +14,6 @@ class ViewPostTest extends TestCase
     /** @test */
     public function a_post_can_be_viewed()
     {
-        $this->withoutExceptionHandling();
         $created_time = now();
 
         $post = Post::factory()->create([
@@ -105,6 +104,7 @@ class ViewPostTest extends TestCase
 
         $response->assertOk();
         $response->assertSee('Edit');
+        $response->assertSee('Delete');
     }
 
     /** @test */
@@ -116,6 +116,7 @@ class ViewPostTest extends TestCase
 
         $response->assertOk();
         $response->assertDontSee('Edit');
+        $response->assertDontSee('Delete');
     }
 
     /** @test */
@@ -127,6 +128,7 @@ class ViewPostTest extends TestCase
 
         $response->assertOk();
         $response->assertDontSee('Edit');
+        $response->assertDontSee('Delete');
     }
 
     /** @test */

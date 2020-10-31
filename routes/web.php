@@ -24,6 +24,7 @@ Route::get('/posts/create', [PostController::class, 'create']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 Route::get('/posts/{post:slug}/edit', [PostController::class, 'edit']);
 Route::post('/posts', [PostController::class, 'save']);
+Route::delete('/posts/{post:slug}', [PostController::class, 'destroy']);
 
 Route::get('/social/auth/{provider}', [AuthController::class, 'redirect']);
 Route::get('/social/auth/{provider}/callback', [AuthController::class, 'callback']);

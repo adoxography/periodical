@@ -23,6 +23,7 @@ class PermissionSeeder extends Seeder
 
         Permission::create(['name' => 'show bio on homepage']);
         Permission::create(['name' => 'alter site settings']);
+        Permission::create(['name' => "delete another user's post"]);
 
         Role::create(['name' => 'contributor'])
             ->givePermissionTo([
@@ -33,7 +34,8 @@ class PermissionSeeder extends Seeder
         Role::create(['name' => 'administrator'])
             ->givePermissionTo([
                 'show bio on homepage',
-                'alter site settings'
+                'alter site settings',
+                "delete another user's post"
             ]);
     }
 }

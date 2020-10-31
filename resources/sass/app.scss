@@ -541,6 +541,9 @@ ul {
   }
 
   &__control {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
     color: $gray-400;
 
     svg {

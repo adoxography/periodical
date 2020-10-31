@@ -55,4 +55,17 @@ class PostController extends Controller
 
         return view('posts.edit', compact('post'));
     }
+
+    public function destroy(Post $post): RedirectResponse
+    {
+        $user = Auth::user();
+
+        if ($post->author_id !== $user->id && !$user->can("delete another user's post")) {
+            abort(403);
+        }
+
+        $post->delete();
+
+        return redirect('/');
+    }
 }
