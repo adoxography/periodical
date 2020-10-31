@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use App\Models\Comment;
 use App\Models\Post;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -25,11 +24,11 @@ class Comments extends Component
         //
     }
 
-    public function deleteComment(int $id): void
+    public function deleteComment(int $commentId): void
     {
-        $comment = $this->post->comments()->where('id', $id)->first();
+        $comment = $this->post->comments()->where('id', $commentId)->first();
 
-        if ($comment->user_id !== Auth::id() && $comment->post->author_id !== Auth::id()) {
+        if ($comment->user_id !== auth()->id() && $comment->post->author_id !== auth()->id()) {
             return;
         }
 

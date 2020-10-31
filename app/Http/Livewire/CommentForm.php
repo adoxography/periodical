@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\Post;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -19,12 +18,12 @@ class CommentForm extends Component
 
     public function save(): void
     {
-        if (!Auth::user()) {
+        if (!auth()->user()) {
             return;
         }
 
         $this->post->comments()->create(array_merge([
-            'user_id' => Auth::id(),
+            'user_id' => auth()->id(),
         ], $this->validate()));
 
         $this->emit('commentCreated');

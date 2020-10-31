@@ -6,7 +6,6 @@ use App\SocialAccountService;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
@@ -29,13 +28,13 @@ class AuthController extends Controller
         }
 
         $user = $accountService->findOrCreate($social, $provider);
-        Auth::login($user, true);
+        auth()->login($user, true);
         return redirect('/posts');
     }
 
     public function logout(): RedirectResponse
     {
-        Auth::logout();
+        auth()->logout();
         return back();
     }
 }

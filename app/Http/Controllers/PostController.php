@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class PostController extends Controller
@@ -40,7 +39,7 @@ class PostController extends Controller
             'image' => 'url',
             'slug' => 'string'
         ]);
-        $data['author_id'] = Auth::id();
+        $data['author_id'] = auth()->id();
 
         $post = Post::create($data);
 
@@ -49,7 +48,7 @@ class PostController extends Controller
 
     public function edit(Post $post): View
     {
-        if (Auth::id() !== $post->author_id) {
+        if (auth()->id() !== $post->author_id) {
             abort(401);
         }
 
@@ -58,7 +57,7 @@ class PostController extends Controller
 
     public function destroy(Post $post): RedirectResponse
     {
-        $user = Auth::user();
+        $user = auth()->user();
 
         if ($post->author_id !== $user->id && !$user->can("delete another user's post")) {
             abort(403);
