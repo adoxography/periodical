@@ -40,7 +40,7 @@ class PostForm extends Component
         $postData = $validatedData['post'];
 
         if (isset($validatedData['image'])) {
-            $postData['image'] = $validatedData['image']->store('/', $disk = 'images');
+            $postData['image'] = $validatedData['image']->store('/', 'images');
         }
 
         if ($this->post->id) {

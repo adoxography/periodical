@@ -79,7 +79,7 @@ class ViewUserProfileTest extends TestCase
     {
         $user = User::factory()->create()->givePermissionTo('have bio');
 
-        $userPost1 = Post::factory()->create([
+        Post::factory()->create([
             'author_id' => $user,
             'title' => 'User Post 0',
             'created_at' => now()
@@ -93,17 +93,17 @@ class ViewUserProfileTest extends TestCase
             'title' => 'Other Post',
             'created_at' => now()->addMinutes(2)
         ]);
-        $userPost3 = Post::factory()->create([
+        Post::factory()->create([
             'author_id' => $user,
             'title' => 'User Post 2',
             'created_at' => now()->addMinutes(3)
         ]);
-        $userPost4 = Post::factory()->create([
+        Post::factory()->create([
             'author_id' => $user,
             'title' => 'User Post 3',
             'created_at' => now()->addMinutes(4)
         ]);
-        $userPost5 = Post::factory()->create([
+        Post::factory()->create([
             'author_id' => $user,
             'title' => 'User Post 4',
             'created_at' => now()->addMinutes(5)

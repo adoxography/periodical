@@ -18,7 +18,7 @@ class HasChronologyTest extends TestCase
             'title' => 'Earlier',
             'created_at' => now()
         ]);
-        $laterPost = Post::factory()->create([
+        Post::factory()->create([
             'title' => 'Later',
             'created_at' => now()->addHours(1)
         ]);
@@ -43,7 +43,7 @@ class HasChronologyTest extends TestCase
         Post::factory()->create([
             'created_at' => now()->addHours(-2)
         ]);
-        $earlierPost = Post::factory()->create([
+        Post::factory()->create([
             'title' => 'Earlier',
             'created_at' => now()->addHours(-1)
         ]);
@@ -65,13 +65,13 @@ class HasChronologyTest extends TestCase
     /** @test */
     public function it_caches_next()
     {
-        $post1 = Post::factory()->create();
-        $post2 = Post::factory()->create(['created_at' => now()->addHours(1)]);
-        $next = $post1->next;
+        $post = Post::factory()->create();
+        Post::factory()->create(['created_at' => now()->addHours(1)]);
+        $next = $post->next;
 
         DB::enableQueryLog();
 
-        $cachedNext = $post1->next;
+        $cachedNext = $post->next;
 
         $this->assertCount(0, DB::getQueryLog());
         $this->assertEquals($next, $cachedNext);
@@ -82,13 +82,13 @@ class HasChronologyTest extends TestCase
     /** @test */
     public function it_caches_previous()
     {
-        $post1 = Post::factory()->create();
-        $post2 = Post::factory()->create(['created_at' => now()->addHours(1)]);
-        $previous = $post2->previous;
+        Post::factory()->create();
+        $post = Post::factory()->create(['created_at' => now()->addHours(1)]);
+        $previous = $post->previous;
 
         DB::enableQueryLog();
 
-        $cachedPrevious = $post2->previous;
+        $cachedPrevious = $post->previous;
 
         $this->assertCount(0, DB::getQueryLog());
         $this->assertEquals($previous, $cachedPrevious);

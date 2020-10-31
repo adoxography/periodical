@@ -61,7 +61,7 @@ class HomeTest extends TestCase
     /** @test */
     public function it_does_not_show_the_bio_of_anyone_who_does_not_have_permission()
     {
-        $user = User::factory()->create([
+        User::factory()->create([
             'bio' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam'
         ]);
 
