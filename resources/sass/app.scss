@@ -1138,3 +1138,33 @@ ul {
     padding: 0.5em 1em;
   }
 }
+
+.medium-editor-toolbar {
+  box-shadow: $shadow-large;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  font-family: $ff-display;
+
+  li {
+    button {
+      background-color: $gray-100;
+      border: none;
+      width: 3em;
+      transition: background-color 150ms ease-in-out;
+
+      &:hover {
+        background-color: $gray-200;
+      }
+
+      &.medium-editor-button-active {
+        background-color: white;
+      }
+    }
+  }
+}
+
+.medium-editor-toolbar-form-active {
+  display: flex;
+  background-color: $gray-100;
+  padding: 0.25em;
+}
