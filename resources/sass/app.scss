@@ -725,6 +725,10 @@ ul {
     min-height: 12em;
     line-height: 1.4;
     padding: 1rem;
+
+    p:first-child {
+      margin-top: 0;
+    }
   }
 
   &__submit-container {
