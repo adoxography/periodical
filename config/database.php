@@ -2,6 +2,17 @@
 
 use Illuminate\Support\Str;
 
+$dbenv = getenv('DATABASE_URL');
+
+if ($dbenv) {
+    $url = parse_url($dbenv);
+
+    $host = $url['host'];
+    $username = $url['user'];
+    $password = $url['pass'];
+    $database = substr($url['path'], 1);
+}
+
 return [
 
     /*
@@ -78,6 +89,20 @@ return [
             'sslmode' => 'prefer',
         ],
 
+        'heroku-pgsql' => [
+            'driver' => 'pgsql',
+            'host' => $host ?? '127.0.0.1',
+            'port' => env('DB_PORT', '5432'),
+            'database' => $database ?? 'forge',
+            'username' => $username ?? 'forge',
+            'password' => $password ?? '',
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema' => 'public',
+            'sslmode' => 'prefer'
+        ],
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DATABASE_URL'),
@@ -123,7 +148,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [
