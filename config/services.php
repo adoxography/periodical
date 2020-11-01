@@ -33,7 +33,7 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => 'http://lacolhost.com:8000/social/auth/google/callback'
+        'redirect' => env('APP_URL') . '/social/auth/google/callback'
     ],
 
     'facebook' => [
