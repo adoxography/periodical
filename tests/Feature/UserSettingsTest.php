@@ -144,7 +144,7 @@ class UserSettingsTest extends TestCase
     /** @test */
     public function it_updates_the_user_avatar()
     {
-        Storage::fake('images');
+        Storage::fake();
         $fakeImage = UploadedFile::fake()->image('avatar.jpg');
 
         $user = User::factory()->create();
@@ -154,6 +154,7 @@ class UserSettingsTest extends TestCase
         $component->call('save');
 
         $this->assertNotNull($user->fresh()->avatar);
+        Storage::assertExists($user->avatar);
     }
 
     /** @test */

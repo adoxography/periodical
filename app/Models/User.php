@@ -55,7 +55,7 @@ class User extends Authenticatable
             return $this->avatar;
         }
 
-        return "/images/{$this->avatar}";
+        return "/{$this->avatar}";
     }
 
     public function posts(): Relation

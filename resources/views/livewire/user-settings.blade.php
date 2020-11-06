@@ -46,7 +46,11 @@
     <div class="field field--image previewed-upload">
         <label class="btn previewed-upload__input">
             Change profile picture
-            <input type="file" wire:model="image" />
+            <input
+                type="file"
+                accept="image/*"
+                wire:model="image"
+            />
         </label>
 
         <img src="{{ isset($image) ? $image->temporaryUrl() : $user->avatar_url }}" class="previewed-upload__preview" />
