@@ -16,6 +16,13 @@ class UserTest extends TestCase
     }
 
     /** @test */
+    public function it_leaves_absolute_paths_alone()
+    {
+        $user = new User(['avatar' => 'https://foo.com/foo.jpg']);
+
+        $this->assertEquals('https://foo.com/foo.jpg', $user->avatar_url);
+    }
+    /** @test */
     public function empty_avatars_are_an_empty_string()
     {
         $user = new User();

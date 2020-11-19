@@ -49,6 +49,10 @@ class User extends Authenticatable
     public function getAvatarUrlAttribute(): string
     {
         if ($this->avatar) {
+            if (preg_match('`^https?://`', $this->avatar)) {
+                return $this->avatar;
+            }
+
             return '/' . $this->avatar;
         }
 
