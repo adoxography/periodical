@@ -30,7 +30,7 @@ class UserSettings extends Component
         $data = $this->validate();
 
         if ($data['image']) {
-            $this->user->avatar = $data['image']->storePublicly('/images');
+            $this->user->avatar = $data['image']->store('/images');
         }
 
         $this->user->save();

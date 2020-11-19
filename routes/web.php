@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 
@@ -18,6 +19,8 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', HomeController::class)->name('home');
+
+Route::get('/images/{id}', [ImageController::class, 'show']);
 
 Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/create', [PostController::class, 'create']);
