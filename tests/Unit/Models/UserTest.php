@@ -12,7 +12,7 @@ class UserTest extends TestCase
     {
         $user = new User(['avatar' => 'foo.jpg']);
 
-        $this->assertEquals('foo.jpg', $user->avatar_url);
+        $this->assertEquals('/foo.jpg', $user->avatar_url);
     }
 
     /** @test */

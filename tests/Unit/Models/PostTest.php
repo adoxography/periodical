@@ -18,6 +18,6 @@ class PostTest extends TestCase
     public function it_has_an_image_url()
     {
         $post = new Post(['image' => 'foo.jpg']);
-        $this->assertEquals('foo.jpg', $post->image_url);
+        $this->assertEquals('/foo.jpg', $post->image_url);
     }
 }

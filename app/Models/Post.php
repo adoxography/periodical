@@ -30,7 +30,7 @@ class Post extends Model
 
     public function getImageUrlAttribute(): string
     {
-        return $this->image;
+        return '/' . $this->image;
     }
 
     public function author(): Relation

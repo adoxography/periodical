@@ -48,7 +48,11 @@ class User extends Authenticatable
 
     public function getAvatarUrlAttribute(): string
     {
-        return $this->avatar ?? '';
+        if ($this->avatar) {
+            return '/' . $this->avatar;
+        }
+
+        return '';
     }
 
     public function posts(): Relation
