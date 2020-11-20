@@ -441,6 +441,7 @@ ul {
 
   &__image {
     object-fit: cover;
+    position: absolute;
     filter: brightness(0.5);
     height: 100%;
     transition: filter 150ms ease-in-out;
@@ -452,32 +453,30 @@ ul {
 
   &__title,
   &__byline {
-    color: $gray-200;
-    position: absolute;
-    left: 0.5rem;
+    position: relative;
 
     @media (min-width: $break-medium) {
+      position: absolute;
       left: 1rem;
     }
   }
 
   &__title {
+    color: $gray-200;
     font-weight: normal;
     font-size: 1.5rem;
+    line-height: 1;
     margin: 0;
-    top: 0.5rem;
-
-    @media (min-width: $break-medium) {
-      top: 1rem;
-    }
+    padding: 1rem;
   }
 
   &__byline {
-    bottom: 0.5rem;
+    color: $gray-400;
     font-size: 0.875rem;
+    padding: 0 1rem 1rem;
 
     @media (min-width: $break-medium) {
-      bottom: 1rem;
+      bottom: 0;
     }
   }
 }
