@@ -32,7 +32,17 @@ class PostFormTest extends TestCase
     {
         $component = Livewire::actingAs($this->user)
             ->test('post-form');
-        $component->assertSet('post', new Post());
+        $this->assertInstanceOf(Post::class, $component->post);
+    }
+
+    /** @test */
+    public function a_random_image_is_provided_with_an_empty_post()
+    {
+        
+        $component = Livewire::actingAs($this->user)
+            ->test('post-form');
+
+        $this->assertMatchesRegularExpression('`^https://picsum.photos/seed/\\d+/1024/256$`', $component->post->image);
     }
 
     /** @test */

@@ -24,12 +24,14 @@ class PostFactory extends Factory
     public function definition()
     {
         $title = implode(' ', $this->faker->words(5));
+        $seed = rand();
 
         return [
             'title' => $title,
             'slug' => Str::slug($title),
             'body' => $this->faker->paragraph,
-            'author_id' => User::factory()
+            'author_id' => User::factory(),
+            'image' => "https://picsum.photos/seed/$seed/1024/256"
         ];
     }
 }

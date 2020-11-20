@@ -21,12 +21,16 @@ class PostForm extends Component
 
     public function mount(Post $post = null): void
     {
+        $seed = rand();
+
         $this->post = $post ?? new Post();
+        $this->post->image ??= "https://picsum.photos/seed/$seed/1024/256";
     }
 
     protected array $rules = [
         'post.title' => 'required',
         'post.body' => 'required',
+        'post.image' => 'string',
         'image' => 'nullable|image'
     ];
 

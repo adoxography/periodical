@@ -5,9 +5,7 @@
     <div class="blog-post__header">
         <img
             class="blog-post__splash"
-            @if (isset($image) || $post->image)
-                src="{{ isset($image) ? $image->temporaryUrl() : $post->image_url }}"
-            @endif
+            src="{{ $image ? $image->temporaryUrl() : $post->image_url }}"
         />
 
         <div class="blog-post__header-info">
