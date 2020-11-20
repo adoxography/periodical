@@ -25,14 +25,6 @@
                 </li>
             @endcan
 
-            @guest
-                <li class="nav__link-item">
-                    <a class="nav__link" href="/contact">
-                        Contact
-                    </a>
-                </li>
-            @endguest
-
             @auth
                 <li class="nav__link-item">
                     <a class="nav__link" href="/me">

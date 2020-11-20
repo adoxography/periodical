@@ -65,22 +65,22 @@ class NavTest extends TestCase
         $view->assertDontSee('Compose');
     }
 
-    /** @test */
-    public function it_shows_the_contact_link_if_the_user_is_a_guest()
-    {
-        $this->assertGuest();
+    /*/1** @test *1/ */
+    /*public function it_shows_the_contact_link_if_the_user_is_a_guest() */
+    /*{ */
+    /*    $this->assertGuest(); */
 
-        $view = $this->view('layouts.partials.nav');
+    /*    $view = $this->view('layouts.partials.nav'); */
 
-        $view->assertSee('Contact');
-    }
+    /*    $view->assertSee('Contact'); */
+    /*} */
 
-    /** @test */
-    public function it_does_not_show_a_contact_link_if_the_user_is_signed_in()
-    {
-        $view = $this->actingAs(User::factory()->create())->view('layouts.partials.nav');
-        $view->assertDontSee('Contact');
-    }
+    /*/1** @test *1/ */
+    /*public function it_does_not_show_a_contact_link_if_the_user_is_signed_in() */
+    /*{ */
+    /*    $view = $this->actingAs(User::factory()->create())->view('layouts.partials.nav'); */
+    /*    $view->assertDontSee('Contact'); */
+    /*} */
 
     /** @test */
     public function it_shows_the_account_link_if_the_user_is_signed_in()

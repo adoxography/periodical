@@ -38,9 +38,6 @@
                     </button>
                 @endauth
             </li>
-            <li class="footer__link-item">
-                <a class="footer__link" href="/help">Help</a>
-            </li>
         </ul>
     </div>
 </footer>
