@@ -20,4 +20,11 @@ class PostTest extends TestCase
         $post = new Post(['image' => 'foo.jpg']);
         $this->assertEquals('/foo.jpg', $post->image_url);
     }
+
+    /** @test */
+    public function its_image_url_is_absolute_if_it_has_a_protocol()
+    {
+        $post = new Post(['image' => 'https://unsplash.it/1024']);
+        $this->assertEquals('https://unsplash.it/1024', $post->image_url);
+    }
 }

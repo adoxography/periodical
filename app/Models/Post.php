@@ -30,6 +30,10 @@ class Post extends Model
 
     public function getImageUrlAttribute(): string
     {
+        if (preg_match('`^https?://`', $this->image)) {
+            return $this->image;
+        }
+
         return '/' . $this->image;
     }
 
