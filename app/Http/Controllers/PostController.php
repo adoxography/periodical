@@ -31,21 +31,6 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function save(): RedirectResponse
-    {
-        $data = request()->validate([
-            'title' => 'required|string|unique:posts,title',
-            'body' => 'required|string',
-            'image' => 'url',
-            'slug' => 'string'
-        ]);
-        $data['author_id'] = auth()->id();
-
-        $post = Post::create($data);
-
-        return redirect($post->url);
-    }
-
     public function edit(Post $post): View
     {
         if (auth()->id() !== $post->author_id) {
