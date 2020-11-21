@@ -14,6 +14,13 @@ class SocialLoginTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->withPermissions();
+    }
+
     public function socialProviders()
     {
         return [
@@ -68,6 +75,60 @@ class SocialLoginTest extends TestCase
 
         $socialAccount = Auth::user()->accounts()->where('provider_name', $provider)->first();
         $this->assertEquals($provider_id, $socialAccount->provider_id);
+    }
+
+    /** @test */
+    public function the_first_user_to_sign_up_becomes_the_administrator()
+    {
+        $provider_id = rand();
+        $user = Mockery::mock('Laravel\Socialite\Two\User');
+        $user->shouldReceive('getId')
+             ->andReturn($provider_id)
+             ->shouldReceive('getEmail')
+             ->andReturn('john.doe@acme.com')
+             ->shouldReceive('getName')
+             ->andReturn('John Doe')
+             ->shouldReceive('getAvatar')
+             ->andReturn('https://placekitten.com/300');
+
+        $providerMock = Mockery::mock('Laravel\Socialite\Contracts\Provider');
+        $providerMock->shouldReceive('user')->andReturn($user);
+
+        Socialite::shouldReceive('driver')->andReturn($providerMock);
+
+        $response = $this->get("/social/auth/google/callback");
+
+        $this->assertAuthenticated();
+        $this->assertTrue(Auth::user()->hasRole('administrator'));
+        $this->assertTrue(Auth::user()->hasRole('contributor'));
+    }
+
+    /** @test */
+    public function subsequent_users_do_not_become_administrators()
+    {
+        User::factory()->create();
+
+        $provider_id = rand();
+        $user = Mockery::mock('Laravel\Socialite\Two\User');
+        $user->shouldReceive('getId')
+             ->andReturn($provider_id)
+             ->shouldReceive('getEmail')
+             ->andReturn('john.doe@acme.com')
+             ->shouldReceive('getName')
+             ->andReturn('John Doe')
+             ->shouldReceive('getAvatar')
+             ->andReturn('https://placekitten.com/300');
+
+        $providerMock = Mockery::mock('Laravel\Socialite\Contracts\Provider');
+        $providerMock->shouldReceive('user')->andReturn($user);
+
+        Socialite::shouldReceive('driver')->andReturn($providerMock);
+
+        $response = $this->get("/social/auth/google/callback");
+
+        $this->assertAuthenticated();
+        $this->assertFalse(Auth::user()->hasRole('administrator'));
+        $this->assertFalse(Auth::user()->hasRole('contributor'));
     }
 
     /** @test */

@@ -28,6 +28,11 @@ class AuthController extends Controller
         }
 
         $user = $accountService->findOrCreate($social, $provider);
+
+        if ($user->wasRecentlyCreated && User::count() === 1) {
+            $user->assignRole('administrator', 'contributor');
+        }
+
         auth()->login($user, true);
         return redirect('/posts');
     }
