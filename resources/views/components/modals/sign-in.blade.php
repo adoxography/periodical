@@ -28,7 +28,7 @@
             </li>
             <li class="social-list__item">
                 <a
-                    href="/social/auth/google"
+                    href="/social/auth/facebook"
                     class="social-list__link social-list__link--facebook"
                 >
                     <span class="social-list__icon">
