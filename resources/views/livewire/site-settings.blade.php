@@ -26,7 +26,7 @@
     <div class="field field--center">
         <button
             wire:click="save"
-            class="field__submit-btn btn"
+            class="field__submit-btn btn btn--dark"
             wire:loading.class="btn--loading"
             wire:target="save"
 

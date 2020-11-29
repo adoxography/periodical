@@ -49,9 +49,7 @@
         </header>
 
         <section class="blog-post__body">
-            @markdown
-{{ $post->body }}
-            @endmarkdown
+            {!! \GrahamCampbell\Markdown\Facades\Markdown::convertToHtml($post->body) !!}
 
             @if ($post->created_at->notEqualTo($post->updated_at))
                 <time class="blog-post__updated-time" datetime="{{ $post->updated_at }}">
