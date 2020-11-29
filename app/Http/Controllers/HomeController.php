@@ -11,7 +11,10 @@ class HomeController extends Controller
 {
     public function __invoke(): View
     {
-        $posts = Post::orderBy('created_at', 'DESC')->take(4)->get();
+        $posts = Post::orderBy('created_at', 'DESC')
+            ->take(4)
+            ->with('author')
+            ->get();
         $admin = User::permission('show bio on homepage')->first();
 
         return view('home', compact('posts', 'admin'));

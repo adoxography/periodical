@@ -15,6 +15,13 @@ class UserController extends Controller
 
     public function show(User $user): View
     {
+        $user->load(
+            'permissions',
+            'roles',
+            'posts',
+            'posts.author'
+        );
+
         if (!$user->can('have bio')) {
             abort(404);
         }
