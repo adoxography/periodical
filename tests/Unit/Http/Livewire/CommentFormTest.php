@@ -57,6 +57,44 @@ class CommentFormTest extends TestCase
     }
 
     /** @test */
+    public function the_body_must_be_at_least_five_characters_long()
+    {
+        $commenter = User::factory()->create();
+        $post = Post::factory()->create();
+        $component = Livewire::actingAs($commenter)->test('comment-form', ['post' => $post]);
+
+        $component->set('body', 'abcd')
+                  ->call('save');
+
+        $component->assertHasErrors(['body' => 'min']);
+        $this->assertDatabaseMissing('comments', ['user_id' => $commenter->id]);
+    }
+
+    /** @test */
+    public function the_comment_button_is_disabled_if_the_body_is_too_short()
+    {
+        $commenter = User::factory()->create();
+        $post = Post::factory()->create();
+        $component = Livewire::actingAs($commenter)->test('comment-form', ['post' => $post]);
+
+        $component->set('body', 'abcd');
+
+        $component->assertSeeHtmlInOrder(['<button', 'disabled="1"', '>Comment', '</button>'], false);
+    }
+
+    /** @test */
+    public function the_comment_button_is_not_disabled_if_the_body_is_long_enough()
+    {
+        $commenter = User::factory()->create();
+        $post = Post::factory()->create();
+        $component = Livewire::actingAs($commenter)->test('comment-form', ['post' => $post]);
+
+        $component->set('body', 'abcde');
+
+        $component->assertSeeHtmlInOrder(['<button', 'disabled=""', '>Comment', '</button>'], false);
+    }
+
+    /** @test */
     public function a_guest_cannot_comment()
     {
         $post = Post::factory()->create();
