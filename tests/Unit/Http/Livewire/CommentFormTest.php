@@ -93,6 +93,7 @@ class CommentFormTest extends TestCase
 
         $component->assertSeeHtmlInOrder(['<button', 'disabled=""', '>Comment', '</button>'], false);
     }
+
     /** @test */
     public function a_guest_cannot_comment()
     {
