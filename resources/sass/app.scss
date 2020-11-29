@@ -156,6 +156,16 @@ ul {
     cursor: default;
     transition: background-color 100ms linear;
   }
+
+  &[disabled="1"] {
+    background-color: $gray-400;
+    color: $gray-600;
+    pointer-events: none;
+
+    &:hover {
+      scale: 1;
+    }
+  }
 }
 
 .divider {

@@ -9,7 +9,7 @@
     ></textarea>
     @guest
         <button
-            class="btn"
+            class="btn btn--dark"
             type="button"
             x-data
             @click.prevent="$dispatch('prompt-login')"
@@ -17,6 +17,6 @@
             Sign in to comment
         </button>
     @else
-        <button class="btn" type="submit">Comment</button>
+        <button class="btn btn--dark" disabled="{{ strlen($this->body) < 5 }}" type="submit">Comment</button>
     @endguest
 </form>

@@ -13,7 +13,7 @@ class CommentForm extends Component
     public Post $post;
 
     protected array $rules = [
-        'body' => 'required'
+        'body' => 'required|min:5'
     ];
 
     public function save(): void
